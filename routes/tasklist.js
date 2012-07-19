@@ -19,7 +19,7 @@ TaskList.prototype = {
 
   addTask: function(req,res) {
     var item = req.body.item;
-    newTask = new task();
+    var newTask = new task();
     newTask.itemName = item.name;
     newTask.itemCategory = item.category;
     newTask.save(function savedTask(err){
@@ -33,6 +33,7 @@ TaskList.prototype = {
 
   completeTask: function(req,res) {
     var completedTasks = req.body;
+    var taskId;
     for(taskId in completedTasks) {
       if(completedTasks[taskId]=='true') {
         var conditions = { _id: taskId };
