@@ -1,0 +1,163 @@
+<head>
+    <title>Consilium</title>
+    <script src="/js/jquery-ui-1.8.18.custom.min.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="header-container">
+        <header class="wrapper clearfix">
+            <div id="nav-primary-container">
+                <div class="container_16" id="nav-primary">
+                    <div class="grid_2" id="logo">
+                        <h1 id="site-name">
+                            <a href="#">
+                                <span>Consilium</span>
+                            </a>
+                        </h1>
+                    </div>
+                    <nav class="grid_9" id="site-navigation">
+                        <ul class="semantic-navigation" id="nav_primary_list">
+                            <li class="highlighted" title="One">
+                                <a href="#"><span>One</span></a>
+                            </li>
+                            <li class="" title="Two">
+                                <a href="#"><span>Two</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div id="main-container">
+        <div id="main">
+            <div class="container_16">
+                <div class="grid_4" id="content">
+                    <div class="table_wrap">
+                        <table class="table_info">
+                            <caption>Add a user story</caption>
+                            <tbody>
+                            {{> userStoryForm}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_20">
+                <div class="lane">
+                    <div class="table_wrap">
+                        <table class="table_info">
+                            <caption>Ready To Pull</caption>
+                            <thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    {{> readyToPullUserStoryList}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="lane">
+                    <div class="table_wrap">
+                        <table class="table_info">
+                            <caption>In Progress</caption>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    {{> inProgressUserStoryList}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="lane">
+                    <div class="table_wrap">
+                        <table class="table_info">
+                            <caption>Complete</caption>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    {{> completeUserStoryList}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<template name="readyToPullUserStoryList">
+    <ul class="sortable">
+        {{#each storyList}}
+        {{> userStory}}
+        {{/each}}
+    </ul>
+    {{makeSortable}}
+</template>
+
+
+<template name="inProgressUserStoryList">
+    <ul class="sortable">
+        {{#each storyList}}
+        {{> userStory}}
+        {{/each}}
+    </ul>
+    {{makeSortable}}
+</template>
+
+<template name="completeUserStoryList">
+    <ul class="sortable">
+        {{#each storyList}}
+        {{> userStory}}
+        {{/each}}
+    </ul>
+    {{makeSortable}}
+</template>
+
+<template name="userStory">
+    <li>
+        <div class="card">
+            <div class="dragHandle">
+                <div style="float: left; width: 15%">
+                    id
+                </div>
+                <div class="assignedTo"
+                     style="float: left; font-style: italic; padding-bottom: 2px; text-align: right; width: 85%">
+                    user
+                </div>
+            </div>
+            <div class="userStoryDialog" style="float: left; width: 100%">
+                <p class="storyName">{{name}}</p>
+            </div>
+            <div style="float: left; width: 100%;">
+                <div style="float: left; width: 60%;">
+                </div>
+                <div style="float:right; width: 40%; margin-top: 4px;">
+                    <div style="text-align: right; margin-right: 5px; font-size: .9em;">
+                        Est: 3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</template>
+
+<template name="userStoryForm">
+    <tr>
+        <td>
+            <input type="text" id="name" placeholder="Name"/>
+        </td>
+    </tr>
+</template>
